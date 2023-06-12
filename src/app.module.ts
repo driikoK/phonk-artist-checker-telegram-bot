@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
+import { CommandModule } from 'nestjs-command';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { SeedModule } from './seeds/seed.module';
 import { BotModule } from './bot/bot.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import configuration from './config';
 
 @Module({
   imports: [
-    BotModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: configuration.host,
@@ -19,6 +20,9 @@ import configuration from './config';
       synchronize: false,
       logging: false,
     }),
+    CommandModule,
+    BotModule,
+    SeedModule,
   ],
   controllers: [AppController],
   providers: [AppService],

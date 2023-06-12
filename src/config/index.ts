@@ -5,6 +5,7 @@ dotenv.config();
 // export enviroments
 export default {
   token: process.env.TELEGRAM_BOT_TOKEN,
+  admin_id: process.env.TELEGRAM_ADMIN_ID,
   chat_for_all_logs: process.env.TELEGRAM_CHAT_ID_FOR_ALL_LOGS,
   chat_for_unknow_artists: process.env.TELEGRAM_CHAT_ID_FOR_UNKNOW_ARTIST_LOGS,
   host: process.env.POSTGRES_HOST,

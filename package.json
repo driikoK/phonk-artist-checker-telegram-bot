@@ -12,6 +12,8 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
+    "seed": "npx nestjs-command seed:init",
+    "seed:clear": "npx nestjs-command seed:clear",
     "typeorm:migrate": "ts-node ./node_modules/typeorm/cli -d ./db/config/migration.ts",
     "migrate:run": "npm run typeorm:migrate -- migration:run",
     "migrate:generate": "npm run typeorm:migrate -- migration:generate db/migrations/$npm_config_name",
@@ -22,7 +24,6 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "typeorm-ts-node-commonjs"
-
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -31,6 +32,7 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/typeorm": "^9.0.1",
     "dotenv": "^16.1.4",
+    "nestjs-command": "^3.1.3",
     "nestjs-telegraf": "^2.6.3",
     "pg": "^8.11.0",
     "reflect-metadata": "^0.1.13",
