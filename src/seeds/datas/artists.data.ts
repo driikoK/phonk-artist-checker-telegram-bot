@@ -4,6 +4,10 @@ export const artists = [
     nationality: 'Кацап 🤮',
   },
   {
+    name: 'wpcwe',
+    nationality: 'Кацап 🤮',
+  },
+  {
     name: 'slick killa',
     nationality: 'Кацап 🤮',
   },
@@ -1533,366 +1537,366 @@ export const artists = [
   },
   {
     name: 'phonkha',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Литва 🇱🇹',
   },
   {
     name: 'fkbambam',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Канада 🇨🇦',
   },
   {
     name: '$ultanr$',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Канада 🇨🇦',
   },
   {
     name: 'rezadead',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Канада 🇨🇦',
   },
   {
     name: 'memortal',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Українець 😍',
   },
   {
     name: 'ilovedarksun',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Словаччина 🇸🇰',
   },
   {
     name: 'sadfriendd',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Японія 🇯🇵',
   },
   {
     name: 'dxrk ダーク',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Алжир 🇩🇿',
   },
   {
     name: 'dxrk',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Алжир 🇩🇿',
   },
   {
     name: 'nateki',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Угорщина 🇭🇺',
   },
   {
     name: 'playamane',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Аргентина 🇦🇷',
   },
   {
     name: 'playaphonk',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Данія 🇩🇰',
   },
   {
     name: 'sxmpra',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Нова Зеландія 🇳🇿',
   },
   {
     name: 'slowymane',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Інкогніто 🙄',
   },
   {
     name: 'hxi',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Норвегія 🇳🇴',
   },
   {
     name: 'hxellplaya',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Казахстан 🇰🇿',
   },
   {
     name: 'netuh',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Португалія 🇵🇹',
   },
   {
     name: 'weedmane',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Естонія 🇪🇪',
   },
   {
     name: 'letoa',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Австралія 🇦🇺',
   },
   {
     name: 'skets',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Румунія 🇷🇴',
   },
   {
     name: 'ctrlgang',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Інкогніто 🙄',
   },
   {
     name: 'freddie dredd',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Канада 🇨🇦',
   },
   {
     name: 'dxxdplaya',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Казахстан 🇰🇿',
   },
   {
     name: 'lithuania hq',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Мальта 🇲🇹',
   },
   {
     name: 'xteage',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Казахстан 🇰🇿',
   },
   {
     name: 'mo beats',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Емерікан бой ор ґіорл 🇺🇸',
   },
   {
     name: 'fxrr',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Інкогніто 🙄',
   },
   {
     name: 'vali$beats',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Чехія 🇨🇿',
   },
   {
     name: 'valisbeats',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Чехія 🇨🇿',
   },
   {
     name: 'nakani',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Емерікан бой ор ґіорл 🇺🇸',
   },
   {
     name: 'kedela',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Грузія 🇬🇪',
   },
   {
     name: 'rubikdice',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Туреччина 🇹🇷',
   },
   {
     name: '6 senz',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Канада 🇨🇦',
   },
   {
     name: '6senz',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Канада 🇨🇦',
   },
   {
     name: 'f.o.o.l',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Швеція 🇸🇪',
   },
   {
     name: 'vestron vulture',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Мексика 🇲🇽',
   },
   {
     name: 'demeter',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Молдова 🇲🇩',
   },
   {
     name: '$atori zoom',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Емерікан бой ор ґіорл 🇺🇸',
   },
   {
     name: 'satori zoom',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Емерікан бой ор ґіорл 🇺🇸',
   },
   {
     name: 'jdslvt',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Чехія 🇨🇿',
   },
   {
     name: 'angerfist',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Нідерланди 🇳🇱',
   },
   {
     name: 'aega',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Інкогніто 🙄',
   },
   {
     name: 'staplegun',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Ірландія 🇮🇪',
   },
   {
     name: 'evvortex',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Сінгапур 🇸🇬',
   },
   {
     name: 'skeler.',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Кацап 🤮',
   },
   {
     name: 'skeler',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Кацап 🤮',
   },
   {
     name: 'nxghtmane',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Литва 🇱🇹',
   },
   {
     name: 'h1rx',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Інкогніто 🙄',
   },
   {
     name: 'líue',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Інкогніто 🙄',
   },
   {
     name: 'liue',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Інкогніто 🙄',
   },
   {
     name: 'soviss',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Литва 🇱🇹',
   },
   {
     name: 'christian bass',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Швеція 🇸🇪',
   },
   {
     name: 'pastel ghost',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Емерікан бой ор ґіорл 🇺🇸',
   },
   {
     name: 'siouxxie sixxsta',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Ай цвай поліцай 🇩🇪',
   },
   {
     name: 'siouxxie',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Ай цвай поліцай 🇩🇪',
   },
   {
     name: 'cree+',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Фінляндія 🇫🇮',
   },
   {
     name: 'cree',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Фінляндія 🇫🇮',
   },
   {
     name: 'enxk',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Ірландія 🇮🇪',
   },
   {
     name: 'zetuv',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Киргизстан 🇰🇬',
   },
   {
     name: 'funk tribu',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Колумбія 🇨🇴',
   },
   {
     name: 'obskϋr',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Ірландія 🇮🇪',
   },
   {
     name: 'obskur',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Ірландія 🇮🇪',
   },
   {
     name: 'bonjr',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Ангола 🇦🇴',
   },
   {
     name: 'cótiles',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Бразилія 🇧🇷',
   },
   {
     name: 'cotiles',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Бразилія 🇧🇷',
   },
   {
     name: 'crystal castles',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Канада 🇨🇦',
   },
   {
     name: 'kikuo',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Японія 🇯🇵',
   },
   {
     name: 'borgore',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Ізраїль 🇮🇱',
   },
   {
     name: 'occxllt',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Бразилія 🇧🇷',
   },
   {
     name: 'mxrcvry',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Австрія 🇦🇹',
   },
   {
     name: 'hi-be',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Нідерланди 🇳🇱',
   },
   {
     name: 'chester',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Уі уі ла баґет е формідабль 🥖🇫🇷',
   },
   {
     name: 'sxl1d',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Казахстан 🇰🇿',
   },
   {
     name: 'cairo!',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Канада 🇨🇦',
   },
   {
     name: 'rxposo99',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Бразилія 🇧🇷',
   },
   {
     name: 'vincce',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Бразилія 🇧🇷',
   },
   {
     name: 'g3ox_em',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Румунія 🇷🇴',
   },
   {
     name: 'marcøs drift',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Бразилія 🇧🇷',
   },
   {
     name: 'marcos drift',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Бразилія 🇧🇷',
   },
   {
     name: 'low detail',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Венесуела 🇻🇪',
   },
   {
     name: 'scxnks',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Південно-Африканська Республіка 🇿🇦',
   },
   {
     name: 'sweepz',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Нідерланди 🇳🇱',
   },
   {
     name: 'twxss',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Узбекистан 🇺🇿',
   },
   {
     name: 'skorde',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Фінляндія 🇫🇮',
   },
   {
     name: 'dnvn',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Мексика 🇲🇽',
   },
   {
     name: 'ariis',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Бельгія 🇧🇪',
   },
   {
     name: `lo'fi chield`,
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Бразилія 🇧🇷',
   },
   {
     name: 'thirst',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Фінляндоізраїлець 🇫🇮🇮🇱',
   },
   {
     name: '$ebu',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Бразилія 🇧🇷',
   },
   {
     name: 'sebu',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Бразилія 🇧🇷',
   },
   {
     name: 'slowboy',
-    nationality: 'Не кацап і не малорос 😌',
+    nationality: 'Норвегія 🇳🇴',
   },
 ];
