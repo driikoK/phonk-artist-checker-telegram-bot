@@ -2,6 +2,8 @@
 /dist
 /node_modules
 .env
+/src/seeds/datas/artists.data.ts
+/src/seeds/datas/users.data.ts
 
 # Logs
 logs
