@@ -19,6 +19,9 @@
 ```bash
 $ npm install
 ```
+```bash
+$ npm run migrate:run
+```
 
 ## Running the app
 
