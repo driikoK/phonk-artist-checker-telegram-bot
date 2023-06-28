@@ -60,7 +60,7 @@ $ npm run start:prod
       <b>/addArtist name="///", nationality="///"</b> — add artist to the db
     </li>
     <li>
-       <b>/updateArtist name="///", nationality="///"</b> — update artist in the db
+       <b>/updateArtist name="///", new_name="///", new_nationality="///"</b> — update artist in the db, 'new_name' and 'new_nationality' are optional
     </li>
   </ul>
 </div>
