@@ -76,12 +76,19 @@ export class BotUpdate {
         message.match(/new_nationality="(.*?)"/)?.[1] ?? null;
 
       const artist = await this.artistService.findOne(currentName);
-      const updatedArtist = Object.assign(artist, {
-        name: newName ?? artist.name,
-        nationality: newNationality ?? artist.nationality,
-      });
-      await this.artistService.update(artist.id, updatedArtist);
-      await ctx.reply('Виконавця оновлено!');
+
+      if (!artist) {
+        await ctx.reply('Такого виконавця немає!');
+      } else {
+        const updatedArtist = Object.assign(artist, {
+          name: newName ?? artist.name,
+          nationality: newNationality ?? artist.nationality,
+        });
+
+        await this.artistService.update(artist.id, updatedArtist);
+
+        await ctx.reply('Виконавця оновлено!');
+      }
     } else {
       await ctx.reply('Ви не адміністратор!');
     }
