@@ -1,24 +1,24 @@
-
 ## Configuration
+
     # Typical .env file
-  
+
       TELEGRAM_BOT_TOKEN = your telegram bot token
       TELEGRAM_CHAT_ID_FOR_ALL_LOGS = your chat id for all logs
       TELEGRAM_CHAT_ID_FOR_UNKNOW_ARTIST_LOGS = your chat id for unknown artist logs
       TELEGRAM_ADMIN_ID = your telegram admin id
-      
+
       POSTGRES_HOST = your postgres host
       POSTGRES_PORT = your postgres port
       POSTGRES_USER = your postgres user
       POSTGRES_PASSWORD = your postgres password
       POSTGRES_DB = your postgres db
 
-
 ## Installation
 
 ```bash
 $ npm install
 ```
+
 ```bash
 $ npm run migrate:run
 ```
@@ -36,8 +36,18 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Data seeding
+
+```bash
+# run seeds
+$ npm run seed
+
+# clear seeds
+$ npm run seed:clear
+```
+
 ## User commands:
-    
+
 <div>
   <ul>
     <li>
@@ -52,8 +62,8 @@ $ npm run start:prod
   </ul>
 </div>
 
-    
 ## Admin commands:
+
  <div>
   <ul>
     <li>
@@ -64,4 +74,3 @@ $ npm run start:prod
     </li>
   </ul>
 </div>
-
