@@ -1,7 +1,23 @@
-version: '3'
+version: '3.7'
+
+networks:
+  phonk-bot:
+    name: phonk-bot-network
+
+volumes:
+  app-db-data-phonk-bot:
+    name: app-db-data-phonk-bot
+
 services:
   db:
     image: postgres
+    container_name: phonk-bot-postgres
+    hostname: postgres
+    restart: always
+    networks:
+      - phonk-bot
+    volumes:
+     - ~/apps/postgres:/data/postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
