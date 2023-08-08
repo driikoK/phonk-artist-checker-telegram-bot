@@ -17,7 +17,7 @@ services:
     networks:
       - phonk-bot
     volumes:
-     - ~/apps/postgres:/data/postgres
+     - app-db-data-phonk-bot:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
