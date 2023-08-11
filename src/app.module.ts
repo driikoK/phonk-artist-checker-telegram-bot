@@ -6,9 +6,13 @@ import { SeedModule } from './seeds/seed.module';
 import { BotModule } from './bot/bot.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import configuration from './config';
+import { TelegrafModule } from 'nestjs-telegraf';
 
 @Module({
   imports: [
+    TelegrafModule.forRoot({
+      token: configuration.token,
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: configuration.host,
@@ -26,5 +30,6 @@ import configuration from './config';
   ],
   controllers: [AppController],
   providers: [AppService],
+  exports: [TelegrafModule],
 })
 export class AppModule {}
