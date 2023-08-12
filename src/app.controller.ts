@@ -22,27 +22,30 @@ export class AppController {
   @Get(':name') async findByName(@Param('name') name: string): Promise<Artist> {
     const artistName = name.toLocaleLowerCase();
     const message = `*From the site:* \n\n ${name}`;
+    try {
+      const result = await this.artistService.findOne(artistName);
 
-    const result = await this.artistService.findOne(artistName);
-
-    await this.bot.telegram.sendMessage(
-      configuration.chat_for_all_logs,
-      message,
-      {
-        parse_mode: 'Markdown',
-      },
-    );
-
-    if (!result) {
       await this.bot.telegram.sendMessage(
-        configuration.chat_for_unknow_artists,
+        configuration.chat_for_all_logs,
         message,
         {
           parse_mode: 'Markdown',
         },
       );
-    }
 
-    return result;
+      if (!result) {
+        await this.bot.telegram.sendMessage(
+          configuration.chat_for_unknow_artists,
+          message,
+          {
+            parse_mode: 'Markdown',
+          },
+        );
+      }
+
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

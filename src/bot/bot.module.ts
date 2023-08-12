@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Artist } from './entities/artist.entity';
 import { User } from './entities/user.entity';
 import configuration from '../../src/config';
+import { ErrorHandling } from './errors/error-handling';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import configuration from '../../src/config';
     }),
     TypeOrmModule.forFeature([Artist, User]),
   ],
-  exports: [TelegrafModule, ArtistService, UserService],
-  providers: [BotUpdate, ArtistService, UserService],
+  exports: [TelegrafModule, ArtistService, UserService, ErrorHandling],
+  providers: [BotUpdate, ArtistService, UserService, ErrorHandling],
 })
 export class BotModule {}
