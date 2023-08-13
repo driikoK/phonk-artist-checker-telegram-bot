@@ -6,7 +6,7 @@ import { Artist } from './bot/entities/artist.entity';
 import configuration from '../src/config';
 import { InjectBot } from 'nestjs-telegraf';
 
-@Controller('artist')
+@Controller()
 export class AppController {
   constructor(
     @InjectBot() private readonly bot: Telegraf<Context>,
@@ -19,7 +19,9 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get(':name') async findByName(@Param('name') name: string): Promise<Artist> {
+  @Get('/artist/:name') async findByName(
+    @Param('name') name: string,
+  ): Promise<Artist> {
     const artistName = name.toLocaleLowerCase();
     const message = `*From the site:* \n\n ${name}`;
     try {
