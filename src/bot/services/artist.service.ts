@@ -36,4 +36,12 @@ export class ArtistService {
       throw new Error(e);
     }
   }
+
+  async findAll(): Promise<Artist[]> {
+    try {
+      return await this.artistRepository.find();
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
 }

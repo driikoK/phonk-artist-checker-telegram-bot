@@ -49,20 +49,65 @@ export class BotUpdate {
 
   @Help()
   async helpCommand(ctx: Context) {
-    await ctx.reply(`Щоб дізнатися, чи виконавець кацап, введіть його ім'я.`);
+    await ctx.reply(
+      `*Щоб дізнатися, чи виконавець кацап, введіть його ім'я.* \n\n🛠 Додаткові  функції:\n\n/statistic — дізнатися статистику.`,
+      {
+        parse_mode: 'Markdown',
+      },
+    );
   }
 
-  @Command('users')
-  async usersCommand(ctx: Context) {
+  @Command('statistic')
+  async statisticCommand(ctx: Context) {
     try {
       const users = await this.userService.findAll();
-      await ctx.reply(`Користувачів: ${users.length}`);
+      const artists = await this.artistService.findAll();
+
+      await ctx.reply(
+        `👤 Кількість користувачів:  ${users.length};\n\n👩‍🎤 Кількість виконавців у базі даних:  ${artists.length};\n\n💌 Зв'язок із розробником: @Driyko`,
+      );
     } catch (error) {
       console.error(error);
       await ctx.reply('Сервер не працює 😔');
       await this.errorHandling.logAndPinError(
         `Помилка з базою даних: ${error}`,
       );
+    }
+  }
+
+  @Command('sendMessage')
+  async sendMessage(@Ctx() ctx: Context) {
+    try {
+      if (ctx.message.from.id == parseInt(configuration.admin_id)) {
+        if (!('reply_to_message' in ctx.message)) {
+          await ctx.reply(
+            'Ви не відповіли на повідомлення, що бажаєте надіслати!',
+          );
+
+          return console.log('No reply_to_message');
+        }
+        const replyMsg = ctx.message.reply_to_message;
+
+        if (replyMsg) {
+          const users = await this.userService.findAll();
+          for (const user of users) {
+            try {
+              await ctx.telegram.sendCopy(user.telegram_id, replyMsg);
+            } catch (error) {
+              console.log(error);
+              continue;
+            }
+          }
+
+          await ctx.reply('Повідомлення надіслано!');
+        }
+      } else {
+        await ctx.reply('Ви не адміністратор!');
+      }
+    } catch (error) {
+      console.error(error);
+      await ctx.reply('Сервер не працює 😔');
+      await this.errorHandling.logAndPinError(`Помилка: ${error}`);
     }
   }
 
