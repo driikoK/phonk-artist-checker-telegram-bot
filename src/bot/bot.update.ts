@@ -16,6 +16,7 @@ import { User } from './entities/user.entity';
 import { Artist } from './entities/artist.entity';
 import { ErrorHandling } from './errors/error-handling';
 import * as stringSimilarity from 'string-similarity';
+import { log } from 'console';
 
 @Update()
 export class BotUpdate {
@@ -198,11 +199,18 @@ export class BotUpdate {
           const replyMessage = `Не знайдено 😔 Можливо, ви мали на увазі:\n\n${similarArtists
             .map((match) => `${match.artist.name}`)
             .join('\n')}`;
+          const logMessage = `⬆️ Це, можливо, одрук і малось на увазі:\n\n${similarArtists
+            .map((match) => `${match.artist.name}`)
+            .join('\n')}`;
           await ctx.reply(replyMessage);
           await ctx.telegram.forwardMessage(
             configuration.chat_for_unknow_artists,
             ctx.message.chat.id,
             ctx.message.message_id,
+          );
+          await ctx.telegram.sendMessage(
+            configuration.chat_for_unknow_artists,
+            logMessage,
           );
         } else {
           await ctx.reply('На жаль, не відомо, або ж ви допустили помилку 😔');
