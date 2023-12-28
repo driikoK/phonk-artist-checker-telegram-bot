@@ -15,6 +15,7 @@ import configuration from '../../src/config';
 import { User } from './entities/user.entity';
 import { Artist } from './entities/artist.entity';
 import { ErrorHandling } from './errors/error-handling';
+import * as stringSimilarity from 'string-similarity';
 
 @Update()
 export class BotUpdate {
@@ -64,7 +65,10 @@ export class BotUpdate {
       const artists = await this.artistService.findAll();
 
       await ctx.reply(
-        `👤 Кількість користувачів:  ${users.length};\n\n👩‍🎤 Кількість виконавців у базі даних:  ${artists.length};\n\n💌 Зв'язок із розробником: @Driyko`,
+        `👤 Кількість користувачів:  ${users.length};\n\n👩‍🎤 Кількість виконавців у базі даних:  ${artists.length};\n\n💌 Зв'язок із розробником: @Driyko \n\n💰[Монобанка](https://send.monobank.ua/jar/8qvQbTt34x) для охочих допомогти з утриманням бота.`,
+        {
+          parse_mode: 'Markdown',
+        },
       );
     } catch (error) {
       console.error(error);
@@ -180,12 +184,34 @@ export class BotUpdate {
         ctx.message.message_id,
       );
       if (!artist) {
-        await ctx.reply('На жаль, не відомо, або ж ви допустили помилку 😔');
-        await ctx.telegram.forwardMessage(
-          configuration.chat_for_unknow_artists,
-          ctx.message.chat.id,
-          ctx.message.message_id,
-        );
+        const allArtists = await this.artistService.findAll();
+        const threshold = 0.5;
+        const similarArtists = allArtists
+          .map((a) => ({
+            artist: a,
+            rating: stringSimilarity.compareTwoStrings(name, a.name),
+          }))
+          .filter((match) => match.rating >= threshold)
+          .sort((a, b) => b.rating - a.rating);
+
+        if (similarArtists.length > 0) {
+          const replyMessage = `Не знайдено 😔 Можливо, ви мали на увазі:\n${similarArtists
+            .map((match) => `${match.artist.name}`)
+            .join('\n')}`;
+          await ctx.reply(replyMessage);
+          await ctx.telegram.forwardMessage(
+            configuration.chat_for_unknow_artists,
+            ctx.message.chat.id,
+            ctx.message.message_id,
+          );
+        } else {
+          await ctx.reply('На жаль, не відомо, або ж ви допустили помилку 😔');
+          await ctx.telegram.forwardMessage(
+            configuration.chat_for_unknow_artists,
+            ctx.message.chat.id,
+            ctx.message.message_id,
+          );
+        }
       } else {
         await ctx.reply(artist.nationality);
       }
