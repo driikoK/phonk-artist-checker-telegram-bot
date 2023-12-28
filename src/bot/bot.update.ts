@@ -195,7 +195,7 @@ export class BotUpdate {
           .sort((a, b) => b.rating - a.rating);
 
         if (similarArtists.length > 0) {
-          const replyMessage = `Не знайдено 😔 Можливо, ви мали на увазі:\n${similarArtists
+          const replyMessage = `Не знайдено 😔 Можливо, ви мали на увазі:\n\n${similarArtists
             .map((match) => `${match.artist.name}`)
             .join('\n')}`;
           await ctx.reply(replyMessage);
