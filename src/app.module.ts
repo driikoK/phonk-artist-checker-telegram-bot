@@ -21,8 +21,14 @@ import { TelegrafModule } from 'nestjs-telegraf';
       password: configuration.password,
       database: configuration.db,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: false,
+      synchronize: true,
       logging: false,
+      ssl: true, // Увімкнути SSL
+      extra: {
+        ssl: {
+          rejectUnauthorized: false, // Використовується для `sslmode=require`
+        },
+      },
     }),
     CommandModule,
     BotModule,
