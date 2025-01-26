@@ -341,6 +341,10 @@ export class BotUpdate {
 
       const name = message.toLocaleLowerCase();
       const artist = await this.artistService.findOne(name);
+      await ctx.telegram.sendMessage(
+        configuration.chat_for_all_logs,
+        'Користувач: ' + ctx.message.chat.id,
+      );
       await ctx.telegram.forwardMessage(
         configuration.chat_for_all_logs,
         ctx.message.chat.id,
