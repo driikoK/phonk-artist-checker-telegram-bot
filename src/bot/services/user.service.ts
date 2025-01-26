@@ -36,4 +36,38 @@ export class UserService {
       throw new Error(e);
     }
   }
+
+  async findBannedUsers(): Promise<User[]> {
+    try {
+      return await this.userRepository.find({
+        where: { isBanned: true },
+      });
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  async banUser(telegram_id: string) {
+    try {
+      const user = await this.userRepository.findOne({
+        where: { telegram_id: telegram_id },
+      });
+      user.isBanned = true;
+      return await this.userRepository.save(user);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  async unbanUser(telegram_id: string) {
+    try {
+      const user = await this.userRepository.findOne({
+        where: { telegram_id: telegram_id },
+      });
+      user.isBanned = false;
+      return await this.userRepository.save(user);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
 }

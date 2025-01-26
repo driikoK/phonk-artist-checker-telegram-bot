@@ -16,19 +16,65 @@ import { User } from './entities/user.entity';
 import { Artist } from './entities/artist.entity';
 import { ErrorHandling } from './errors/error-handling';
 import * as stringSimilarity from 'string-similarity';
-import { log } from 'console';
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Update()
 export class BotUpdate {
+  private bannedUsers: Set<string> = new Set();
+  private alertedBannedUsers: Set<string> = new Set();
+
   constructor(
     @InjectBot() private readonly bot: Telegraf<Context>,
     private readonly artistService: ArtistService,
     private readonly userService: UserService,
     private readonly errorHandling: ErrorHandling,
-  ) {}
+  ) {
+    this.loadBannedUsers();
+  }
+
+  private async loadBannedUsers() {
+    try {
+      const bannedUsers = await this.userService.findBannedUsers();
+      bannedUsers.forEach((user) => this.bannedUsers.add(user.telegram_id));
+      console.log('Banned users loaded:', this.bannedUsers);
+    } catch (error) {
+      console.error('Error loading banned users:', error);
+    }
+  }
+
+  private async banUser(telegram_id: string) {
+    try {
+      await this.userService.banUser(telegram_id); // Update DB
+      this.bannedUsers.add(telegram_id); // Update in-memory Set
+    } catch (error) {
+      console.error('Error banning user:', error);
+    }
+  }
+
+  private async unbanUser(telegram_id: string) {
+    try {
+      await this.userService.unbanUser(telegram_id); // Update DB
+      this.bannedUsers.delete(telegram_id); // Update in-memory Set
+    } catch (error) {
+      console.error('Error unbanning user:', error);
+    }
+  }
 
   @Start()
   async startCommand(ctx: Context) {
+    const telegram_id = ctx.message.chat.id.toString();
+
+    // Check if the user is banned
+    if (this.bannedUsers.has(telegram_id)) {
+      // Check if the user has already been alerted
+      if (!this.alertedBannedUsers.has(telegram_id)) {
+        await ctx.reply('Ви заблоковані'); // Alert the user
+        this.alertedBannedUsers.add(telegram_id); // Mark the user as alerted
+      }
+      return; // Ignore further messages from banned users
+    }
+
     await ctx.reply(`Щоб дізнатися, чи виконавець кацап, введіть його ім'я.`);
     try {
       const telegram_id = JSON.stringify(ctx.message.chat.id);
@@ -51,6 +97,18 @@ export class BotUpdate {
 
   @Help()
   async helpCommand(ctx: Context) {
+    const telegram_id = ctx.message.chat.id.toString();
+
+    // Check if the user is banned
+    if (this.bannedUsers.has(telegram_id)) {
+      // Check if the user has already been alerted
+      if (!this.alertedBannedUsers.has(telegram_id)) {
+        await ctx.reply('Ви заблоковані'); // Alert the user
+        this.alertedBannedUsers.add(telegram_id); // Mark the user as alerted
+      }
+      return; // Ignore further messages from banned users
+    }
+
     await ctx.reply(
       `*Щоб дізнатися, чи виконавець кацап, введіть його ім'я.* \n\n🛠 Додаткові  функції:\n\n/statistic — дізнатися статистику.`,
       {
@@ -59,9 +117,67 @@ export class BotUpdate {
     );
   }
 
+  @Command('users')
+  async sendUserList(@Ctx() ctx: Context) {
+    try {
+      // Check if the user is the admin
+      if (ctx.message.from.id != parseInt(configuration.admin_id)) {
+        await ctx.reply('Ви не адміністратор!');
+        return;
+      }
+
+      // Fetch all users from the database
+      const users = await this.userService.findAll();
+
+      if (!users.length) {
+        await ctx.reply('No users found in the database.');
+        return;
+      }
+
+      const sortedUsers = users.sort((a, b) => a.id - b.id);
+
+      // Create the file content
+      const fileContent = sortedUsers
+        .map(
+          (user) => `ID: ${user.telegram_id}, Name: ${user.name || 'Unknown'}`,
+        )
+        .join('\n');
+
+      // Define the file path
+      const filePath = path.resolve(__dirname, 'users.txt');
+
+      // Write the content to the file
+      fs.writeFileSync(filePath, fileContent);
+
+      // Send the file to the admin
+      await ctx.replyWithDocument({ source: filePath, filename: 'users.txt' });
+
+      // Remove the file after sending
+      fs.unlinkSync(filePath);
+    } catch (error) {
+      console.error('Error generating user list:', error);
+      await ctx.reply('Failed to generate the user list.');
+      await this.errorHandling.logAndPinError(
+        `Error generating user list: ${error}`,
+      );
+    }
+  }
+
   @Command('statistic')
   async statisticCommand(ctx: Context) {
     try {
+      const telegram_id = ctx.message.chat.id.toString();
+
+      // Check if the user is banned
+      if (this.bannedUsers.has(telegram_id)) {
+        // Check if the user has already been alerted
+        if (!this.alertedBannedUsers.has(telegram_id)) {
+          await ctx.reply('Ви заблоковані'); // Alert the user
+          this.alertedBannedUsers.add(telegram_id); // Mark the user as alerted
+        }
+        return; // Ignore further messages from banned users
+      }
+
       const users = await this.userService.findAll();
       const artists = await this.artistService.findAll();
 
@@ -174,9 +290,55 @@ export class BotUpdate {
     }
   }
 
+  @Command('ban')
+  async banCommand(@Message('text') message: string, @Ctx() ctx: Context) {
+    if (ctx.message.from.id !== parseInt(configuration.admin_id)) {
+      await ctx.reply('Ви не адміністратор!');
+      return;
+    }
+
+    const telegram_id = message.split(' ')[1]; // Example: "/ban 123456"
+    if (!telegram_id) {
+      await ctx.reply('Вкажіть telegram_id користувача!');
+      return;
+    }
+
+    await this.banUser(telegram_id);
+    await ctx.reply(`Користувача ${telegram_id} заблоковано!`);
+  }
+
+  @Command('unban')
+  async unbanCommand(@Message('text') message: string, @Ctx() ctx: Context) {
+    if (ctx.message.from.id !== parseInt(configuration.admin_id)) {
+      await ctx.reply('Ви не адміністратор!');
+      return;
+    }
+
+    const telegram_id = message.split(' ')[1]; // Example: "/unban 123456"
+    if (!telegram_id) {
+      await ctx.reply('Вкажіть telegram_id користувача!');
+      return;
+    }
+
+    await this.unbanUser(telegram_id);
+    await ctx.reply(`Користувача ${telegram_id} розблоковано!`);
+  }
+
   @On('text')
   async getMessage(@Message('text') message: string, @Ctx() ctx: Context) {
     try {
+      const telegram_id = ctx.message.chat.id.toString();
+
+      // Check if the user is banned
+      if (this.bannedUsers.has(telegram_id)) {
+        // Check if the user has already been alerted
+        if (!this.alertedBannedUsers.has(telegram_id)) {
+          await ctx.reply('Ви заблоковані'); // Alert the user
+          this.alertedBannedUsers.add(telegram_id); // Mark the user as alerted
+        }
+        return; // Ignore further messages from banned users
+      }
+
       const name = message.toLocaleLowerCase();
       const artist = await this.artistService.findOne(name);
       await ctx.telegram.forwardMessage(

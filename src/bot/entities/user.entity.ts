@@ -10,4 +10,7 @@ export class User {
 
   @Column()
   name: string;
+
+  @Column({ default: false })
+  isBanned: boolean;
 }
